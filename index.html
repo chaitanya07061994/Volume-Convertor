@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volume Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+      color: blue;
+    }
+
+    #volumeConverter {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 15px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.2s;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="volumeConverter">
+    <h1>Volume Converter</h1>
+    <label for="volume">Enter volume:</label>
+    <input type="number" id="volume" placeholder="Enter volume">
+    <label for="unit">Select unit:</label>
+    <select id="unit">
+      <option value="l">Liters (L)</option>
+      <option value="ml">Milliliters (ml)</option>
+      <option value="cm3">Cubic Centimeters (cm³)</option>
+      <option value="floz">Fluid Ounces (fl oz)</option>
+      <option value="cup">Cups (cup)</option>
+      <option value="pt">Pints (pt)</option>
+      <option value="qt">Quarts (qt)</option>
+      <option value="gal">Gallons (gal)</option>
+      <option value="m3">Cubic Meters (m³)</option>
+      <option value="ft3">Cubic Feet (ft³)</option>
+    </select>
+    <button onclick="convertVolume()">Convert</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function convertVolume() {
+      const volumeInput = document.getElementById('volume');
+      const selectedUnit = document.getElementById('unit').value;
+      const resultDiv = document.getElementById('result');
+
+      let volumeInLiters;
+
+      switch (selectedUnit) {
+        case 'ml':
+          volumeInLiters = parseFloat(volumeInput.value) * 0.001;
+          break;
+        case 'cm3':
+          volumeInLiters = parseFloat(volumeInput.value) * 0.001;
+          break;
+        case 'floz':
+          volumeInLiters = parseFloat(volumeInput.value) * 0.0295735;
+          break;
+        case 'cup':
+          volumeInLiters = parseFloat(volumeInput.value) * 0.236588;
+          break;
+        case 'pt':
+          volumeInLiters = parseFloat(volumeInput.value) * 0.473176;
+          break;
+        case 'qt':
+          volumeInLiters = parseFloat(volumeInput.value) * 0.946353;
+          break;
+        case 'gal':
+          volumeInLiters = parseFloat(volumeInput.value) * 3.78541;
+          break;
+        case 'm3':
+          volumeInLiters = parseFloat(volumeInput.value) * 1000;
+          break;
+        case 'ft3':
+          volumeInLiters = parseFloat(volumeInput.value) * 28.3168;
+          break;
+        default:
+          volumeInLiters = parseFloat(volumeInput.value);
+          break;
+      }
+
+      const volumeInMilliliters = volumeInLiters / 0.001;
+      const volumeInCubicCentimeters = volumeInLiters / 0.001;
+      const volumeInFluidOunces = volumeInLiters / 0.0295735;
+      const volumeInCups = volumeInLiters / 0.236588;
+      const volumeInPints = volumeInLiters / 0.473176;
+      const volumeInQuarts = volumeInLiters / 0.946353;
+      const volumeInGallons = volumeInLiters / 3.78541;
+      const volumeInCubicMeters = volumeInLiters / 1000;
+      const volumeInCubicFeet = volumeInLiters / 28.3168;
+
+      resultDiv.innerHTML = `
+        <p>${volumeInLiters.toFixed(7)} Liters (L)</p>
+        <p>${volumeInMilliliters.toFixed(7)} Milliliters (ml)</p>
+        <p>${volumeInCubicCentimeters.toFixed(7)} Cubic Centimeters (cm³)</p>
+        <p>${volumeInFluidOunces.toFixed(7)} Fluid Ounces (fl oz)</p>
+        <p>${volumeInCups.toFixed(7)} Cups (cup)</p>
+        <p>${volumeInPints.toFixed(7)} Pints (pt)</p>
+        <p>${volumeInQuarts.toFixed(7)} Quarts (qt)</p>
+        <p>${volumeInGallons.toFixed(7)} Gallons (gal)</p>
+        <p>${volumeInCubicMeters.toFixed(7)} Cubic Meters (m³)</p>
+        <p>${volumeInCubicFeet.toFixed(7)} Cubic Feet (ft³)</p>
+      `;
+    }
+  </script>
+</body>
+</html>
